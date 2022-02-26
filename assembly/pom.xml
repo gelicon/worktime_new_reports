@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>reports</artifactId>
+        <groupId>biz.gelicon</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>assembly</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>biz.gelicon</groupId>
+            <artifactId>engine</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>biz.gelicon</groupId>
+            <artifactId>r0002</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>biz.gelicon</groupId>
+            <artifactId>rUSR-LST</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>biz.gelicon</groupId>
+            <artifactId>rUSR-DTL</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <excludeGroupIds>biz.gelicon</excludeGroupIds>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>go-assemby</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assemble/reports-desc.xml</descriptor>
+                            </descriptors>
+                            <finalName>reports</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <archive>
+                                <manifest>
+                                    <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                    <addClasspath>true</addClasspath>
+                                    <classpathPrefix>lib/</classpathPrefix>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <configuration>
+                            <target>
+                                <!-- удаление конфликтующего с springboot sl4j -->
+                                <!-- заменяем родной org.eclipse.birt.runtime_4.8.0-20180626-4.8.0.jar на org.eclipse.birt.runtime_4.8.0.jar -->
+                                <delete>
+                                    <fileset dir="${project.build.directory}/lib" includes="org.eclipse.birt.runtime_4.8.0-20180626-4.8.0.jar" />
+                                </delete>
+                                <copy todir="${project.build.directory}/lib">
+                                    <fileset dir="${project.basedir}/../lib">
+                                        <include name="org.eclipse.birt.runtime_4.8.0-20180626-4.8.0.jar"/>
+                                    </fileset>
+                                </copy>
+                                <!-- удаление конфликтующего с современной версией mongodb клиента MongoDB -->
+                                <delete>
+                                    <fileset dir="${project.build.directory}/lib" includes="org.eclipse.orbit.mongodb_3.2.2.v20170222-2110-4.8.0.jar" />
+                                </delete>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

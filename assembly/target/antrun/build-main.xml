@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <delete>
+    <fileset includes="org.eclipse.birt.runtime_4.8.0-20180626-4.8.0.jar" dir="D:\WORK\Programming\worktime_new\reports\assembly\target/lib"/>
+  </delete>
+  <copy todir="D:\WORK\Programming\worktime_new\reports\assembly\target/lib">
+    <fileset dir="D:\WORK\Programming\worktime_new\reports\assembly/../lib">
+      <include name="org.eclipse.birt.runtime_4.8.0-20180626-4.8.0.jar"/>
+    </fileset>
+  </copy>
+  <delete>
+    <fileset includes="org.eclipse.orbit.mongodb_3.2.2.v20170222-2110-4.8.0.jar" dir="D:\WORK\Programming\worktime_new\reports\assembly\target/lib"/>
+  </delete>
+</target>
+</project>

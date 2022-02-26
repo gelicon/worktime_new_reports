@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<font>
+	<!--
+	Дополнительный конфиг файл для BIRT для
+	установки путей к папкам с файлами шрифтов
+	Вложенности не допускаются!!!
+	Этот файл для Linux положить в папку /usr/share/fonts/gelicon
+
+	Так же файлы шрифтов можно класть напрямую в папку
+	/usr/share/fonts/TTF
+	или любую папку, указанную в fontsConfig.xml библиотеки
+	org.eclipse.birt.runtime_4.8.0-20180626-4.8.0.jar
+	в секции font-paths
+	Вложенности не допускаются!!!!
+
+	Установка шрифтов в Linux
+
+Установка всех стандартных шрифтов из Windows:
+
+sudo apt-get install msttcorefonts
+
+Или просто скопировать шрифты в папку
+/usr/share/fonts
+/usr/local/share/fonts
+или в любую другую папку, прописанную в файле
+/etc/fonts/fonts.conf
+лучше всего копировать в папку
+/usr/share/fonts/TTF
+
+Linux вложенные папки понимает, то есть приписывать все подпапки
+в файле /etc/fonts/fonts.conf не надо
+
+создать кеш информации о шрифтах для приложений, использующих fontconfig для их обработки шрифтов:
+
+fc-cache -f -v
+
+если не установлена утилита - установить
+sudo apt-get install fontconfig
+
+результат:
+...
+/usr/share/fonts/gelicon/Calibri: caching, new cache contents: 3 fonts, 0 dirs
+/usr/share/fonts/truetype: caching, new cache contents: 0 fonts, 3 dirs
+/usr/share/fonts/truetype/dejavu: caching, new cache contents: 22 fonts, 0 dirs
+/usr/share/fonts/truetype/liberation: caching, new cache contents: 16 fonts, 0 dirs
+/usr/share/fonts/truetype/msttcorefonts: caching, new cache contents: 60 fonts, 0 dirs
+...
+
+Проверить, что шрифты готовы
+fc-list | grep "Calibri"
+
+	-->
+	<font-paths>
+		<path path="/usr/share/fonts/gelicon/Calibri" />
+	</font-paths>
+</font>

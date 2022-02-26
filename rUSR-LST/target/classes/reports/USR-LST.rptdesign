@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="author">Gelicon Pro</property>
+    <property name="comments">Фильтры&#13;
+По статусу пользователя - status (0 - Все - по умолчанию)&#13;
+По типу пользователя - type (-1 - Все - по умолчанию)</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.8.0.v201805221921</property>
+    <property name="language">Russian</property>
+    <text-property name="title">Список пользователей</text-property>
+    <html-property name="description">Список пользователей - стандартный отчет</html-property>
+    <property name="units">cm</property>
+    <text-property name="displayName">Список пользователей</text-property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">fixed layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="status" id="104">
+            <property name="hidden">false</property>
+            <text-property name="helpText">Статус пользователя</text-property>
+            <text-property name="promptText">Выберете статус пользователя</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">true</property>
+            <property name="dataSetName">FilterDataSetUserType</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["capcode_id"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["capcode_name"]</expression>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">0</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MainDataSource" id="9">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://10.15.3.39:5432/GC_DEVELOP_TRUNK</property>
+            <property name="odaUser">SYSDBA</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">bWFzdGVya2V5</encrypted-property>
+            <property name="odaJndiName">java:comp/env/jdbc/gelicon-core-datasource</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FilterDataSetUserType" id="103">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">CAPCODE_ID</property>
+                    <property name="alias">capcode_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">capcode_id</text-property>
+                    <text-property name="heading">CAPCODE_ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CAPCODE_NAME</property>
+                    <property name="alias">capcode_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">capcode_name</text-property>
+                    <text-property name="heading">CAPCODE_NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CAPCODE_SORTCODE</property>
+                    <property name="alias">capcode_sortcode</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">capcode_sortcode</text-property>
+                    <text-property name="heading">CAPCODE_SORTCODE</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">capcode_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">capcode_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">capcode_sortcode</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">MainDataSource</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">CAPCODE_ID</property>
+                    <property name="nativeName">CAPCODE_ID</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">CAPCODE_NAME</property>
+                    <property name="nativeName">CAPCODE_NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">CAPCODE_SORTCODE</property>
+                    <property name="nativeName">CAPCODE_SORTCODE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT DISTINCT
+       C.capcode_id,
+       C.capcode_name,
+       C.capcode_sortcode 
+FROM   proguser U,
+       capcode C
+WHERE  C.capcode_id = U.proguser_status_id
+UNION
+SELECT 0,
+       'Все',
+       '000'
+FROM   dual
+ORDER BY 3
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>capcode_id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>capcode_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>capcode_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>capcode_name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>capcode_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>capcode_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>capcode_sortcode</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>capcode_sortcode</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>capcode_sortcode</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="MainDataSet" id="792">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">PROGUSER_NAME</property>
+                    <property name="alias">proguser_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">PROGUSER_NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PROGUSER_FULLNAME</property>
+                    <property name="alias">proguser_fullname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">PROGUSER_FULLNAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CAPCODE_NAME</property>
+                    <property name="alias">capcode_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">CAPCODE_NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PROGUSER_TYPE</property>
+                    <property name="alias">proguser_type</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="heading">PROGUSER_TYPE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ACCESSROLE_LIST</property>
+                    <property name="alias">accessrole_list</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="heading">ACCESSROLE_LIST</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">status</property>
+                    <property name="paramName">status</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">status</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">2</property>
+                    <property name="allowNull">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">proguser_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">proguser_fullname</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">capcode_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">proguser_type</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">accessrole_list</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">MainDataSource</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">PROGUSER_NAME</property>
+                    <property name="nativeName">PROGUSER_NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">PROGUSER_FULLNAME</property>
+                    <property name="nativeName">PROGUSER_FULLNAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">CAPCODE_NAME</property>
+                    <property name="nativeName">CAPCODE_NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">PROGUSER_TYPE</property>
+                    <property name="nativeName">PROGUSER_TYPE</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">ACCESSROLE_LIST</property>
+                    <property name="nativeName">LIST</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT U.proguser_name ,
+       U.proguser_fullname ,
+       C.capcode_name ,
+       U.proguser_type ,
+       (SELECT LIST(AR.accessrole_name ,', ')
+        FROM   proguserrole UR,
+               accessrole AR
+        WHERE  UR.proguser_id = U.proguser_id 
+          AND  AR.accessrole_id = UR.accessrole_id 
+       ) accessrole_list
+FROM   proguser U,
+       capcode C
+WHERE  C.capcode_id = U.proguser_status_id 
+  AND  (U.proguser_status_id = ? OR ? = 0)
+ORDER BY U.proguser_name 
+]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="46">
+            <property name="fontFamily">"Calibri"</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">a4</property>
+            <property name="orientation">landscape</property>
+            <page-footer>
+                <grid id="737">
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="width">28.019375cm</property>
+                    <column id="738">
+                        <property name="width">5cm</property>
+                    </column>
+                    <column id="739"/>
+                    <column id="740">
+                        <property name="width">2cm</property>
+                    </column>
+                    <row id="741">
+                        <cell id="742">
+                            <text id="746">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<table width="100%">
+  <tr>
+    <td><value-of>Formatter.format(new Date(), "dd.MM.yyyy hh:mm:ss")</value-of></td>
+  </tr>
+</table>]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="743"/>
+                        <cell id="744">
+                            <grid id="776">
+                                <column id="777">
+                                    <property name="width">1cm</property>
+                                </column>
+                                <column id="778"/>
+                                <column id="779"/>
+                                <column id="780"/>
+                                <row id="781">
+                                    <cell id="782">
+                                        <label id="786">
+                                            <text-property name="text">Стр.</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="783">
+                                        <auto-text id="787">
+                                            <property name="textAlign">right</property>
+                                            <property name="type">page-number</property>
+                                        </auto-text>
+                                    </cell>
+                                    <cell id="784">
+                                        <label id="788">
+                                            <property name="textAlign">center</property>
+                                            <text-property name="text">/</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="785">
+                                        <auto-text id="789">
+                                            <property name="textAlign">left</property>
+                                            <property name="type">total-page</property>
+                                        </auto-text>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                </grid>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <label id="47">
+            <property name="fontSize">18pt</property>
+            <property name="textAlign">left</property>
+            <text-property name="text">Список пользователей</text-property>
+        </label>
+        <grid id="106">
+            <property name="width">28.28395833333333cm</property>
+            <column id="107">
+                <property name="width">4cm</property>
+            </column>
+            <column id="108">
+                <property name="width">6cm</property>
+            </column>
+            <column id="109"/>
+            <row id="110">
+                <cell id="111">
+                    <label id="118">
+                        <text-property name="text">Фильтр:</text-property>
+                    </label>
+                </cell>
+                <cell id="112">
+                    <label id="119">
+                        <text-property name="text">Статус пользователя</text-property>
+                    </label>
+                </cell>
+                <cell id="113">
+                    <text-data id="120">
+                        <expression name="valueExpr">reportContext.getParameterDisplayText ("status")</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+        </grid>
+        <table id="873">
+            <property name="dataSet">MainDataSet</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">PROGUSER_NAME</property>
+                    <text-property name="displayName">PROGUSER_NAME</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PROGUSER_NAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PROGUSER_FULLNAME</property>
+                    <text-property name="displayName">PROGUSER_FULLNAME</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PROGUSER_FULLNAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PROGUSER_TYPE</property>
+                    <text-property name="displayName">PROGUSER_TYPE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PROGUSER_TYPE"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">ACCESSROLE_LIST</property>
+                    <text-property name="displayName">ACCESSROLE_LIST</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ACCESSROLE_LIST"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">CAPCODE_NAME</property>
+                    <text-property name="displayName">CAPCODE_NAME</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CAPCODE_NAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">proguser_name</property>
+                    <text-property name="displayName">proguser_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["proguser_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">proguser_fullname</property>
+                    <text-property name="displayName">proguser_fullname</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["proguser_fullname"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">capcode_name</property>
+                    <text-property name="displayName">capcode_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["capcode_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">accessrole_list</property>
+                    <text-property name="displayName">accessrole_list</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["accessrole_list"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="897"/>
+            <column id="898"/>
+            <column id="899"/>
+            <column id="900"/>
+            <header>
+                <row id="874">
+                    <property name="backgroundColor">#C0C0C0</property>
+                    <cell id="875">
+                        <label id="876">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Логин</text-property>
+                        </label>
+                    </cell>
+                    <cell id="877">
+                        <label id="878">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Имя</text-property>
+                        </label>
+                    </cell>
+                    <cell id="879">
+                        <label id="880">
+                            <text-property name="text">Статус</text-property>
+                        </label>
+                    </cell>
+                    <cell id="881">
+                        <label id="882">
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Доступ на роли</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="883">
+                    <cell id="884">
+                        <data id="902">
+                            <property name="resultSetColumn">proguser_name</property>
+                        </data>
+                    </cell>
+                    <cell id="886">
+                        <data id="903">
+                            <property name="resultSetColumn">proguser_fullname</property>
+                        </data>
+                    </cell>
+                    <cell id="888">
+                        <data id="904">
+                            <property name="resultSetColumn">capcode_name</property>
+                        </data>
+                    </cell>
+                    <cell id="890">
+                        <data id="905">
+                            <property name="resultSetColumn">accessrole_list</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="892">
+                    <cell id="893"/>
+                    <cell id="894"/>
+                    <cell id="895"/>
+                    <cell id="896"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>
